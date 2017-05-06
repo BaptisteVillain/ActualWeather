@@ -56,8 +56,7 @@ gulp.task('javascript', function() {
     .pipe(plumber({errorHandler: notify.onError("JS Error: <%= error.message %>")}))
     .pipe(babel({
             presets: ['es2015']
-    }))
-    .pipe(sourcemaps.init())
+    }))    
     .pipe(minify({
       ext:{
         src:'.js',
@@ -65,7 +64,6 @@ gulp.task('javascript', function() {
       },
       ignoreFiles: ['.min.js']
     }))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.dist + 'js'))
     .pipe(connect.reload())
 })

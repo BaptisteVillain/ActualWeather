@@ -5,12 +5,22 @@
 }
 
 html, body {
-  font-family: $main-font;
-  margin: 0;
-  padding: 0;
   height: 100%;
   width: 100%;
   background: #EFF3F7;
-  overflow: hidden;
+  overflow-x: hidden;
+  font-family: 'Hind'
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  
+  &::-webkit-scrollbar-track {
+      background: #F1F1F1;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #000;
+  }
 }
 
