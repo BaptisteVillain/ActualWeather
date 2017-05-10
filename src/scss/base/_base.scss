@@ -9,7 +9,9 @@ html, body {
   width: 100%;
   background: #EFF3F7;
   overflow-x: hidden;
-  font-family: 'Hind'
+  font-family: 'Hind';
+  user-select: none;
+  cursor: default;
 
   &::-webkit-scrollbar {
     width: 0.5em;
