@@ -1,7 +1,7 @@
 class HourPoint{
     constructor(data, index){
         this.data  = data
-        this.hour  = data.FCTTIME.hour
+        this.date  = new Date(this.data.dt * 1000)
         this.index = index
         this.el    = document.createElement('div')
         this.draw()
@@ -16,7 +16,8 @@ class HourPoint{
 
 class PrecipitationLine{
     constructor(value, index){
-        this.value = value
+        this.data = value
+        this.date = new Date(this.data.dt * 1000)
         this.index = index
         this.el_container = document.createElement('div')
         this.el_line      = document.createElement('div')        
@@ -33,20 +34,20 @@ class PrecipitationLine{
         actual_weather.el.appendChild(this.el_container)
 
         this.el_line.className = 'line'
-        this.el_line.style.transform = ' scaleY('+ this.value.sky/100 +')'
+        this.el_line.style.transform = ' scaleY('+ this.data.main.humidity/100 +')'
         this.el_container.appendChild(this.el_line)
 
         this.el_text_line.className = 'text-line'
-        this.el_text_line.style.top = this.el_container.offsetHeight*(this.value.sky/100) + 'px'
-        this.el_text_line.textContent = this.value.sky + '%'
+        this.el_text_line.style.top = this.el_container.offsetHeight*(this.data.main.humidity/100) + 'px'
+        this.el_text_line.textContent = this.data.main.humidity + '%'
         this.el_container.appendChild(this.el_text_line)
 
         this.el_text_hour.className = 'text-hour'
-        this.el_text_hour.textContent = this.value.FCTTIME.hour + 'H'
+        this.el_text_hour.textContent = this.date.getHours() + 'H'
         this.el_container.appendChild(this.el_text_hour)
 
         this.el_text_temp.className = 'text-temp'
-        this.el_text_temp.textContent = this.value.temp.metric + '°C'
+        this.el_text_temp.textContent = this.data.main.temp + '°C'
         this.el_container.appendChild(this.el_text_temp)
     }
 }
@@ -56,7 +57,7 @@ class PrecipitationLine{
 class ActualWeather{
     constructor(el){
         this.el = el
-        this.el.style.transform = 'rotate(-'+ ((15*data.hourly_forecast[0].FCTTIME.hour) - 30) +'deg)'
+        // this.el.style.transform = 'rotate(-'+ ((15*data[0].dt) - 30) +'deg)'
         this.width = el.offsetWidth
         this.height = el.offsetHeight
         this.data_width = this.width*0.95
@@ -79,18 +80,15 @@ class ActualWeather{
         this.container_circle_line.appendChild(this.circle_line)
     }
     draw(){
-        for (var i = 0; i < 12; i++) {
-            this.hour_points.push(new HourPoint(data.hourly_forecast[i*2], i*2))
-            this.precipitation_lines.push(new PrecipitationLine(data.hourly_forecast[i*2], i*2))
+        for (var i = 0; i < 8; i++) {
+            this.hour_points.push(new HourPoint(data[i*3], i*3))
+            this.precipitation_lines.push(new PrecipitationLine(data[i*3], i*3))
         }
     }
 }
 
-if(data.hourly_forecast[0].FCTTIME.hour%2 != 0){
-    console.log(data.hourly_forecast[0].FCTTIME.hour)
-    data.hourly_forecast.splice(0,1);
-    console.log(data.hourly_forecast[0].FCTTIME.hour)    
-}
+
+console.log(data)
 
 const actual_weather = new ActualWeather(document.querySelector('.circle-hour'))
 actual_weather.draw()

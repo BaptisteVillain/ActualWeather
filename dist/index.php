@@ -6,13 +6,22 @@
 
 // $weather = file_get_contents('http://api.wunderground.com/api/846302b684d9027f/hourly/q/' . $city->location->country .'/'. $city->location->city .'.json');
 
-$weather = file_get_contents('http://baptistevillain.fr/data/weather.json');
+// $weather = file_get_contents('http://baptistevillain.fr/data/weather.json');
+$weather = file_get_contents('http://api.openweathermap.org/data/2.5/forecast?q=Paris&APPID=23a4112294d4c9d5ad6034758f26af25&units=metric');
 
 $weather = json_decode($weather);
 
 $month_date  = date('m');
 $month_date   = DateTime::createFromFormat('!m', $month_date);
 $month_name = $month_date->format('F'); // March
+
+// echo '<pre>';
+// print_r(date('H', $weather->list[0]->dt));
+// echo '</pre>';
+
+// echo '<pre>';
+// print_r($weather);
+// echo '</pre>';
 
 ?>
 
@@ -50,10 +59,10 @@ $month_name = $month_date->format('F'); // March
           <div class="date-transition"><?= intval(date('d')) .' <img src="assets/img/arrow.svg" title="arrow next day"> ' .(intval(date('d'))+1) ?></div>
           <div class="current-hour">
             <div class="icon">
-              <img src="assets/img/weather-icons/day/<?= $weather->hourly_forecast[0]->icon ?>.svg" alt="weather icon">              
+              <img src="assets/img/weather-icons/<?= $weather->list[0]->weather[0]->icon ?>.svg" alt="weather icon">              
             </div>
             <div class="temp">
-              <?= $weather->hourly_forecast[0]->temp->metric ?>°C
+              <?= round($weather->list[0]->main->temp, 2) ?>°C
             </div>
             <div class="date">
               <?= date('H:i') ?> </br>
@@ -68,8 +77,8 @@ $month_name = $month_date->format('F'); // March
     </div>
     <!--<script src="data/data.json"></script>-->
     <script>
-      const data = <?= json_encode($weather); ?>
+      const data = <?= json_encode($weather->list); ?>
     </script>
     <script src="assets/js/app.min.js"></script>
   </body>
-</html>
+</html>  
