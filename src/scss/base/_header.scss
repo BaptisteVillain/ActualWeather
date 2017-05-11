@@ -32,31 +32,61 @@
     }
     .search-bar{
         height: 100%;
-        .country-select-img{
-            text-align: center;
+        form{
+            height: 100%;
+        }
+        .city-select-img{
+            text-align: right;
             height: 55px;
             line-height: 55px;
             margin: 0;
             padding: 0;
+            padding-right: 10px;
             img{
                 width: 25px;
-                opacity: .8;
+                opacity: .4;
             }
         }
-        .country-select{
+        .city-select{
             margin: 0;
             padding: 0;
             height: 100%;
             line-height: 55px;
-            select{
+            input{
                 width: 100%;
-                height: 30px;                
+                height: 30px;    
+                line-height: 28px;            
                 outline: none;
                 border: 1px solid rgba(255,255,255,.7);
                 background: none;
                 color: #FFF;
                 text-transform: uppercase;
                 font-size: 12px;
+                padding: 5px;
+                border-radius: 2px;
+            }
+            input::placeholder{
+                color: #FFF;
+                opacity: 0.3;
+            }
+        }
+        .city-select-search{
+            height: 100%;
+            padding: 0;
+                button{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    background: none;
+                    border: none;
+                    opacity: 0.65;
+                    img{
+                        width: 20px;
+
+                    }
+                    &:hover{
+                        opacity: 1;
+                    }
             }
         }
     }
