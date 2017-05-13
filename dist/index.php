@@ -8,11 +8,18 @@ include 'components/classes/Routing.php';
 $routing = new Routing($q);
 $page = $routing->getPage();
 
-$location = new Location(FLK_KEY, FLK_SCT);
+$location = new Location(USP_KEY, USP_SCT);
 
 $weather = new Weather($location->city, OWM_KEY);
 $weather_current  = $weather->getCurrent();
 $weather_forecast = $page == 'daily' ? $weather->getForecastHour() : $weather->getForecastDaily();
+
+$photo = $location->getPhoto();
+$photo = $photo->results[0];
+
+// echo '<pre>';
+// print_r($photo->user);
+// echo '</pre>';
 
 include 'components/views/partials/header.php';
 include 'components/views/pages/'.$page.'.php';

@@ -27,17 +27,23 @@ class Location{
     }
 
     public function getPhoto(){
-        $data  = file_get_contents('https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key='.$this->key.'&tags='.$this->city.'&per_page=1');
+        $path = './cache/photo/' . hash('sha256', $this->city.date('Y-m'));
+        if(file_exists($path)){
+            $data = file_get_contents($path);
+        }
+        else{
+            $data  = file_get_contents('https://api.unsplash.com/search/photos?page=1&client_id='.$this->key.'&query='.$this->city.'&per_page=1');
+            file_put_contents($path, $data);                   
+        }
+
+        $data = json_decode($data);
+
+        if(empty($data->results)){
+            $data = file_get_contents('./cache/photo/default');
+            $data = json_decode($data);
+        }
+
+        return $data;
         
-        $data = new SimpleXMLElement($data);
-
-        $farm_id = $data->photos->photo['farm'];
-        $server_id = $data->photos->photo['server'];
-        $id = $data->photos->photo['id'];
-        $secret = $data->photos->photo['secret'];
-
-        $image = 'https://farm'.$farm_id.'.staticflickr.com/'.$server_id.'/'.$id.'_'.$secret.'.jpg';
-
-        return $image;        
     }
 }

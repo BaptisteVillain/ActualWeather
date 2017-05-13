@@ -1,7 +1,6 @@
 .forecast-data-visualisation{
-    background: rgba(255,255,255,.4);
+    background: rgba(255,255,255,.2);
     height: 70vh;
-    position: relative;
     z-index: 100;
     border-radius: 4px;
     min-width: 300px;
@@ -19,17 +18,92 @@
     }
     .row{
         height: 100%;
+        .weather-svg{
+            position: absolute;
+            pointer-events: none;
+            .temp-line{
+                fill: none;
+                stroke: rgba(255,255,255,.7);
+                stroke-width: 3px;
+            }
+            .hum-line{
+                fill: #2980b9;
+                opacity: 0.5;
+            }
+        }
         .day-container{
             &:nth-child(2n){
-                background: green;
+                background: rgba(0,0,0,.035);
             }
-            background: red;
             height: 100%;
+            h3{
+                text-align: center;
+                color: #FFFFFF;
+                font-size: 24px;
+                text-transform: uppercase;
+                margin: 30px 0;
+                .date-nbr{
+                    opacity: 0.4;
+                }
+            }
+            .weather-icon{
+                height: 40px;
+                text-align: center;
+                margin: 40px 0;
+                img{
+                    height: 40px;
+                    width: auto;
+                }
+            }
             .temp-point{
                 width: 10px;
                 height: 10px;
                 background: #FFFFFF;
-                margin: 0 auto;
+                position: absolute;
+                left: calc(50% - 5px);
+                top: 60%;
+                border-radius: 50%;
+                .temp-text{
+                    position: absolute;
+                    width: 100px;
+                    height: 20px;
+                    top: -25px;
+                    left: -45px;
+                    font-size: 20px;
+                    text-align: center;
+                    line-height: 18px;
+                    color: #FFFFFF;
+                    span{
+                        margin: 0 3px;
+                    }
+                    .min{
+                        opacity: 0.5;
+                    }
+                    .max{
+
+                    }
+                }
+            }
+            .hum-point{
+                width: 6px;
+                height: 6px;
+                background: #3498db;
+                position: absolute;
+                left: calc(50% - 3px);
+                bottom: 30px;
+                border-radius: 50%;
+                .hum-text{
+                    position: absolute;
+                    width: 100px;
+                    height: 20px;
+                    top: -20px;
+                    left: -45px;
+                    font-size: 18px;
+                    text-align: center;
+                    line-height: 20px;
+                    color: #FFFFFF;
+                    opacity: 0.5;
+                }
             }
         }
         

@@ -1,5 +1,8 @@
 <div class="fluid-container">
   <section class="weather-container">
+    <div class="blurred-image-background">
+      <img src="<?= $photo->urls->full ?>" alt="background city image">
+    </div>
     <div class="actual-data-visualisation">
       <div class="date-transition"><?= date('D') .' <img src="assets/img/arrow.svg" title="arrow next day"> ' .date('D', time() + (24 * 60 * 60)) ?></div>
       <div class="current-hour">
@@ -19,4 +22,3 @@
       </div>
     </div>
   </section>
-</div>
