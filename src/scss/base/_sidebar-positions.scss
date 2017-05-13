@@ -1,0 +1,89 @@
+.button-positions{
+  a{
+    display: block;      
+    bottom: 15px;
+    right: 15px;
+    width: 150px;
+    height: 30px;
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 2px;
+    background: rgba(255,255,255,.05);
+    line-height: 28px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    text-align: center;    
+    font-size: 12px;
+    position: fixed;
+    z-index: 10;
+    transition: transform .3s ease;    
+    &.active{
+      transform: translateX(-200px);
+    }
+    &:hover,&:focus{
+      text-decoration: none;
+    }
+  }
+}
+
+.sidebar-positions{
+    width: 200px;
+    height: 100vh;
+    background: #182C44;
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
+    border-left: 3px solid rgba(255,255,255,.02);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    transform: translateX(200px);
+    transition: transform .3s ease;
+    will-change: transform;
+    overflow-y: scroll;
+    
+    &.active{
+        transform: translateX(0);
+    }
+    &::-webkit-scrollbar {
+    width: 0.3em;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: none;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255,255,255,.2);
+    }
+
+    .button-close{
+        display: block;
+        height: 40px;
+        width: 40px;
+        background: rgba(255,255,255,.05);
+        margin: 5px;
+        img{
+            width: 40px;
+            height: 40px;
+            opacity: 0.8;
+        }
+    }
+    .sidebar-list-item{
+      display: block;
+      width: calc(100% - 20px);
+      height: 30px;
+      line-height: 30px;
+      margin: 10px auto;
+      background: rgba(255,255,255,.05);
+      color: #FFF;
+      text-align: center;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    .sidebar-list-empty{
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      width: calc(100% - 20px);
+      margin: 10px auto;
+    }
+}

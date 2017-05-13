@@ -113,6 +113,3 @@ class WeatherSvg{
 
 const forecastWeather = new ForecastWeather(document.querySelector('.forecast-data-visualisation'))
 const tempLine = new WeatherSvg(document.querySelector('.weather-svg'), data)
-
-
-console.log(data)

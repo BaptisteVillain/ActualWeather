@@ -14,6 +14,8 @@ $weather = new Weather($location->city, OWM_KEY);
 $weather_current  = $weather->getCurrent();
 $weather_forecast = $page == 'daily' ? $weather->getForecastHour() : $weather->getForecastDaily();
 
+include 'components/includes/session.php';
+
 $photo = $location->getPhoto();
 $photo = $photo->results[0];
 
@@ -23,6 +25,7 @@ $photo = $photo->results[0];
 
 include 'components/views/partials/header.php';
 include 'components/views/pages/'.$page.'.php';
+include 'components/views/partials/sidebar-positions.php';
 include 'components/views/partials/footer.php';
 
 

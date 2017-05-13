@@ -10,7 +10,7 @@ class Location{
 
     private function requestTest(){
         if(!empty($_GET['city'])){
-            $this->city = ucfirst((string)$_GET['city']);
+            $this->city = ucfirst(strtolower((string)$_GET['city']));
         }
         else{
             $this->city = $this->getLocationByIP();
@@ -23,7 +23,7 @@ class Location{
         $location = file_get_contents('https://ipinfo.io/'.$ip);
         $location = json_decode($location);
         
-        return ucfirst((string)$location->city);
+        return ucfirst(strtolower((string)$location->city));
     }
 
     public function getPhoto(){

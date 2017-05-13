@@ -144,5 +144,3 @@ var WeatherSvg = function () {
 
 var forecastWeather = new ForecastWeather(document.querySelector('.forecast-data-visualisation'));
 var tempLine = new WeatherSvg(document.querySelector('.weather-svg'), data);
-
-console.log(data);
