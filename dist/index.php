@@ -19,14 +19,15 @@ include 'components/includes/session.php';
 $photo = $location->getPhoto();
 $photo = $photo->results[0];
 
-// echo '<pre>';
-// print_r($photo->user);
-// echo '</pre>';
-
-include 'components/views/partials/header.php';
-include 'components/views/pages/'.$page.'.php';
-include 'components/views/partials/sidebar-positions.php';
-include 'components/views/partials/footer.php';
+if($page != '404'){
+    include 'components/views/partials/header.php';
+    include 'components/views/pages/'.$page.'.php';
+    include 'components/views/partials/sidebar-positions.php';
+    include 'components/views/partials/footer.php';
+}
+else{
+    include 'components/views/pages/'.$page.'.php';    
+}
 
 
 ?>

@@ -7,6 +7,7 @@
             $this->key      = $key;
         }
 
+        // GET CURRENT WEATHER
         public function getCurrent(){
             $path = './cache/weather/current/' . hash('sha256', $this->location.date('Y-m-d-H'));
             if(file_exists($path)){
@@ -19,6 +20,7 @@
             return json_decode($data);
         }
 
+        // GET HOURLY FORECAST WEATHER       
         public function getForecastHour(){
             $path = './cache/weather/hourly/' . hash('sha256', $this->location.date('Y-m-d-H'));
             if(file_exists($path)){
@@ -31,6 +33,7 @@
             return json_decode($data);
         }
 
+        // GET DAILY FORECAST WEATHER
         public function getForecastDaily(){
             $path = './cache/weather/daily/' . hash('sha256', $this->location.date('Y-m-d-H'));
             if(file_exists($path)){

@@ -1,13 +1,17 @@
 @charset 'UTF-8';
 
-// Tools
-@import 'tools/variables';
-
 // Base
+@import 'base/normalize';
 @import 'base/base';
-@import 'base/header';
-@import 'base/footer';
-@import 'base/daily';
-@import 'base/weekly';
-@import 'base/sidebar-positions';
+
+//partials
+@import 'partials/header';
+@import 'partials/footer';
+@import 'partials/sidebar-positions';
+
+
+//pages
+@import 'pages/daily';
+@import 'pages/weekly';
+
 @import 'base/responsive';

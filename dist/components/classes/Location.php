@@ -17,6 +17,7 @@ class Location{
         }
     }
 
+    // GET USER IP LOCATION
     private function getLocationByIP(){
         $ip = $_SERVER['REMOTE_ADDR']; // to use on server
         $ip = '92.169.177.106'; // test IP
@@ -26,6 +27,7 @@ class Location{
         return ucfirst(strtolower((string)$location->city));
     }
 
+    // GET UNSPLASH PHOTO
     public function getPhoto(){
         $path = './cache/photo/' . hash('sha256', $this->city.date('Y-m'));
         if(file_exists($path)){

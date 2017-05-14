@@ -52,13 +52,12 @@ class PrecipitationLine{
     }
 }
 
-console.log(data[0].dt)
 
 class ActualWeather{
     constructor(el){
         this.el = el
         this.date = new Date(data[0].dt * 1000)
-        this.el.style.transform = 'rotate(-'+ (360/24)*(this.date.getHours()*(24/8)-1.5) +'deg)'
+        this.el.style.transform = 'rotate(-'+ (15)*((this.date.getHours())) +'deg)'
         this.width = el.offsetWidth
         this.height = el.offsetHeight
         this.data_width = this.width*0.95
@@ -81,7 +80,7 @@ class ActualWeather{
         this.container_circle_line.appendChild(this.circle_line)
     }
     draw(){
-        for (var i = 0; i < 8; i++) {
+        for (let i = 0; i < 8; i++) {
             this.hour_points.push(new HourPoint(data[i], i*3))
             this.precipitation_lines.push(new PrecipitationLine(data[i], i*3))
         }
